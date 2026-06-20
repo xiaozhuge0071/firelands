@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://cw1oh4r3xjpun"]
+
+[ext_resource type="Texture2D" uid="uid://mof7enyhvf76" path="res://main_load.jpg" id="1_4t46g"]
+[ext_resource type="Script" uid="uid://bou7sw67xa1nk" path="res://main_loading.gd" id="1_20tp7"]
+[ext_resource type="Script" uid="uid://dieglhckhu3df" path="res://rich_text_label.gd" id="3_c1qmw"]
+
+[node name="main_loading" type="Control" unique_id=941152442]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_20tp7")
+
+[node name="MainLoad" type="Sprite2D" parent="." unique_id=832359024]
+position = Vector2(575.75, 324.12503)
+scale = Vector2(0.5981771, 0.538125)
+texture = ExtResource("1_4t46g")
+
+[node name="Label" type="Label" parent="MainLoad" unique_id=293257476]
+offset_left = -572.99084
+offset_top = -474.09998
+offset_right = 251.17981
+offset_bottom = -410.9176
+theme_override_colors/font_color = Color(1, 0.87058824, 0.3882353, 1)
+theme_override_font_sizes/font_size = 39
+text = "Firelands"
+
+[node name="Label2" type="Label" parent="MainLoad/Label" unique_id=520933399]
+layout_mode = 0
+offset_left = 25.076187
+offset_top = 66.89899
+offset_right = 618.546
+offset_bottom = 412.54358
+theme_override_colors/font_color = Color(1, 0.87058824, 0.3882353, 1)
+text = "ОБЩЕГОСУДАРСТВЕННАЯ АВТОМАТИЗИРОВАНН СИСТЕМА
+(OrAC)· CP/M VERSION 2.2
+
+64K RAM SYSTEM - NO ERRORS DETECTED
+
+INSERT SYSTEM DISK IN DRIVE A:
+PRESS ANY KEY TO BOOT...
+
+BOOTING CP/M...
+
+CP/IM VERSION 2.2
+COPYRIGHT IC) 1973, MAIN COMPUTING CENTRE OF THE STATE
+PLANNING COMMITTEE (GOSPLAN) OF THE USSR 
+
+ENTER TODAY'S DATE (MM- DD-YY): 06-17-86
+ENTER TIME (HH:MM:SS):14:22:00
+
+A>dir
+A:WS      COM:WSMSGS   OVR:WSOVLY1   OVR
+A:SC       COM:DBASE   COM:DBASE   OVR
+A:PIP      COM:STAT  COM:SUBMIT   COM
+A:RENAME      DOC:LETTER   TXT
+A>"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1251606115]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 421.0
+offset_right = 686.0
+offset_bottom = 453.0
+theme_override_colors/default_color = Color(1, 0.87058824, 0.3882353, 1)
+script = ExtResource("3_c1qmw")
