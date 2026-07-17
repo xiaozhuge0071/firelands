@@ -4,14 +4,14 @@ signal card_changed
 var card:Array[CardData]=[]
 var discard:Array[CardData]=[]
 
-func chushi(cards:Array[CardData])->void:
+func initialize(cards:Array[CardData])->void:
 	card = cards.duplicate()
 	card.shuffle()
 	emit_signal("card_changed")
 
 func gacha()->CardData:
 	if card.is_empty():
-		xi_pai()
+		shuffle()
 	if card.is_empty():
 		return null
 	var card=card.pop_back()
@@ -21,7 +21,7 @@ func gacha()->CardData:
 func ReturnCard()->void:
 	pass
 
-func xi_pai()->void:
+func shuffle()->void:
 	card=discard.duplicate()
 	card.shuffle()
 	discard.clear()
