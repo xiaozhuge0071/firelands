@@ -5,7 +5,7 @@ var card:Array[CardData]=[]
 var discard:Array[CardData]=[]
 
 func initialize(cards:Array[CardData])->void:
-	card = cards.duplicate()
+	card=cards.duplicate()
 	card.shuffle()
 	emit_signal("card_changed")
 

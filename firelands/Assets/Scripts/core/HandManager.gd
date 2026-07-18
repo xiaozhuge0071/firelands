@@ -9,7 +9,7 @@ const maxhand:int=16		#最大手牌上限为16
 
 func gethand(player_id:int)->Array[CardData]:	#检索手牌数据
 	if not hands.has(player_id):	
-		hands[player_id]=[]
+		hands[player_id]=[] as Array[CardData]
 	return hands[player_id]
 
 func addcard(player_id:int,card:CardData)->bool:	#添加卡牌
@@ -34,6 +34,9 @@ func checkend(player_id:int)->void:		#检查回合结束
 	if cardsize>0:
 		emit_signal('handover',player_id,cardsize)
 
+func size()->int:
+	return hands.size()
+
 func discard(player_id:int,ind:Array[int])->void:	#玩家自主丢弃手牌
 	var hand:=gethand(player_id)
 	
@@ -42,7 +45,7 @@ func discard(player_id:int,ind:Array[int])->void:	#玩家自主丢弃手牌
 	ind.reverse()
 	
 	for index in ind:
-		if index<0 or index>=hand.size():
+		if index<0 or index>=hands.size():
 			continue
 		var card:CardData=hand[index]
 		hand.remove_at(index)
