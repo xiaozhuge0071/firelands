@@ -34,6 +34,10 @@ func run_turn(player_id: int) -> void:
 	print("玩家 %d 回合开始" % player_id)
 	
 	# 2️⃣ 抽卡（抽 2 张）
+	"""
+	在deckmanager中添加一个多次抽卡的逻辑，减少代码复用
+	后续要抽多张卡就直接用这个函数就行，没必要每次for循环了
+	"""
 	for i in range(2):
 		var card=gs.deck.gacha()
 		if card:
@@ -46,7 +50,18 @@ func run_turn(player_id: int) -> void:
 	
 	# 3️⃣ 打牌（打第 1 张）
 	if gs.hand.size() > 0:
+		"""
+		之后得写卡牌效果的实施了，也就是玩家拖动卡牌后，在松开鼠标左键时应当识别所在的节点类型
+		之后将这个节点传给卡牌，让卡牌执行效果
+		这一块的逻辑放到卡牌里面写，因为每一个卡牌的效果不同
+		先把卡牌的操作状态机添加上，然后再添加效果触发就行
+		"""
 		var played_card = gs.hand.usecard(player_id,0)
+		"""
+		下面这里将卡牌放到弃牌堆，不要直接添加到数组中
+		在deckmanager添加一个单独的函数，用来处理卡牌的弃牌逻辑
+		这样的有些卡牌进入弃牌堆时可能出现的效果就可以在这里执行
+		"""
 		gs.deck.discard.append(played_card)
 		print("打出: %s" % played_card.name)
 	else:
