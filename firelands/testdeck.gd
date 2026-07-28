@@ -34,26 +34,28 @@ func run_turn(player_id: int) -> void:
 	print("玩家 %d 回合开始" % player_id)
 	
 	# 2️⃣ 抽卡（抽 2 张）
-	for i in range(2):
-		var card=gs.deck.gacha()
-		if card:
-			gs.hand.addcard(player_id,card)
-			print("抽到: %s" % card.name)
-		else:
-			print("牌库已空，无法抽卡")
 	
-	print("手牌数量: %d" % gs.hand.size())
+	var card=gs.deck.gacha(3)
+	
+	if card:
+		gs.hand.addcard(player_id,card)
+		for a in card:
+			print("抽到: %s" % a.name)
+	else:
+		print("牌库已空，无法抽卡")
+	
+	print("手牌数量: %d" % gs.hand.size(player_id))
 	
 	# 3️⃣ 打牌（打第 1 张）
-	if gs.hand.size() > 0:
+	if gs.hand.size(player_id) > 0:
 		var played_card = gs.hand.usecard(player_id,0)
-		gs.deck.discard.append(played_card)
+		gs.deck.FoldCard(played_card)
 		print("打出: %s" % played_card.name)
 	else:
 		print("手牌为空，无法出牌")
 	
-	print("手牌剩余: %d" % gs.hand.size())
-	print("弃牌堆数量: %d" % gs.deck.discard.size())
+	print("手牌剩余: %d" % gs.hand.size(player_id))
+	print("弃牌堆数量: %d" % gs.deck.size(player_id))
 	
 	# 4️⃣ 结束回合
 	print("玩家 %d 回合结束" % gs.player_id)

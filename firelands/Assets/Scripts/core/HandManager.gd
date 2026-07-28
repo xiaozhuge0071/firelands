@@ -12,9 +12,10 @@ func gethand(player_id:int)->Array[CardData]:	#检索手牌数据
 		hands[player_id]=[] as Array[CardData]
 	return hands[player_id]
 
-func addcard(player_id:int,card:CardData)->bool:	#添加卡牌
+func addcard(player_id:int,r_cards:Array[CardData])->bool:	#添加卡牌
 	var hand=gethand(player_id)
-	hand.append(card)
+	for card in r_cards:
+		hand.append(card)
 	emit_signal("hand_change",player_id)
 	return true
 
@@ -34,8 +35,10 @@ func checkend(player_id:int)->void:		#检查回合结束
 	if cardsize>0:
 		emit_signal('handover',player_id,cardsize)
 
-func size()->int:
-	return hands.size()
+func size(player_id:int)->int:
+	if not hands.has(player_id):
+		return 0
+	return hands[player_id].size()
 
 func discard(player_id:int,ind:Array[int])->void:	#玩家自主丢弃手牌
 	var hand:=gethand(player_id)
